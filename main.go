@@ -11,10 +11,16 @@ import (
 
 func main() {
 	log.SetReportCaller(true)
+
+	// Creating chi variable to use on handlers to customize routers
 	var r *chi.Mux = chi.NewRouter()
+
+	// Calling handler
 	handlers.Handler(r)
+
 	fmt.Println("Starting GO API service...")
 
+	// Creating server
 	err := http.ListenAndServe("localhost:8000", r)
 
 	if err != nil {

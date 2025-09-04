@@ -5,6 +5,7 @@ import (
 	"net/http"
 )
 
+// Defining interfaces
 type CoinBalanceParams struct {
 	Username string
 }
@@ -19,6 +20,7 @@ type Error struct {
 	Message string
 }
 
+// writes function to format error response
 func writeError(w http.ResponseWriter, message string, code int) {
 	resp := Error{
 		Code:    code,
@@ -31,6 +33,7 @@ func writeError(w http.ResponseWriter, message string, code int) {
 	json.NewEncoder(w).Encode(resp)
 }
 
+// Make error handlers to send a default errors
 var (
 	RequestErrorHandler = func(w http.ResponseWriter, err error) {
 		writeError(w, err.Error(), http.StatusBadRequest)

@@ -7,6 +7,7 @@ import (
 )
 
 func Handler(r *chi.Mux) {
+	// Defining routers
 	r.Use(chimiddleware.StripSlashes)
 	r.Route("/account", func(router chi.Router) {
 		router.Use(middleware.Authorization)

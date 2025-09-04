@@ -10,8 +10,8 @@ import (
 	log "github.com/sirupsen/logrus"
 )
 
+// Usecase to get coin balance when router is called
 func GetCoinBalance(w http.ResponseWriter, r *http.Request) {
-
 	var params = api.CoinBalanceParams{}
 	var decoder *schema.Decoder = schema.NewDecoder()
 	var err error
@@ -35,9 +35,7 @@ func GetCoinBalance(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	var tokenDetails *tools.CoinsDetails
-
-	tokenDetails = (*database).GetUserCoins(params.Username)
+	var tokenDetails = (*database).GetUserCoins(params.Username)
 
 	if tokenDetails == nil {
 		log.Error(err)
